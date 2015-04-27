@@ -1,5 +1,19 @@
 
+function load_matsvidmid(matsvidmid)
+{
+	console.log(matsvidmid);
+}
 
-$.getJSON("matsvidmid.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
+// Inject the JSONp "script" from the location defined in the URL.
+var charURL = decodeURIComponent(getVars()["matsvidmid_url"]);
+$.ajax({
+    url: charURL,
+    dataType: 'script',
+    timeout: 5000,
+    success: function () {
+        load_matsvidmid(matsvidmid);
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        alert("Failed loading data - " + textStatus + " - " + errorThrown);
+    }
 });
