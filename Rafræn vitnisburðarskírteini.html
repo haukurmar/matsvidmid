@@ -88,7 +88,7 @@
 	<script type="text/template" id="template_namskeid">
 	<tr>
 		<td class="remove_namskeid"><a href="">-</></td>
-		<td class="namskeid_nafn"><input type="text" placeholder="Nafn námskeiðs" /><button class="update_namskeid_nafn">Vista</button></td>
+		<td class="namskeid_nafn"><input type="text" placeholder="Nafn námskeiðs" /><button id="update_namskeid_nafn">Vista</button></td>
 		<td class="grade" id="grade_a">A</td>
 		<td class="grade" id="grade_b+">B+</td>
 		<td class="grade" id="grade_b">B</td>
@@ -100,9 +100,13 @@
 	</script>
 	
 	<script type="text/template" id="template_nemandi">
-	<form>
-		<div id="student_info"></div>
-	</form>
+	<div id="student_info">
+		<label for="student_name">Nemandi</label>
+		<input type="text" id="student_name" name="student_name" placeholder="Nafn nemanda" />
+		<label for="student_id">Kennitala</label>
+		<input type="text" id="student_id" name="student_id" placeholder="Kennitala nemanda" />
+		<button id="update_student_info">Vista</button>
+	</div>
 	</script>
 	<!-- /Templates -->
 	
@@ -209,7 +213,7 @@
 	}
 	
 	$(function() {
-		/* Til þess að stilla matsviðmið
+		/* Til þess að stilla matsviðmið
 		for(var k in matsvidmid){
 			var template_matsvidmid = $("#template_matsvidmid").html();
 			var template = template_matsvidmid.format(k);
@@ -233,8 +237,36 @@
 		});
 		
 		//vista námskeiðsnafn
-		$(document.body).on('click', '.update_namskeid_nafn' ,function(e){
+		$(document.body).on('click', '#update_namskeid_nafn' ,function(e){
 			$($(this).parent()).html($(this).prev().val());
+		});
+		
+		//búa til vitnisburðarskírteini nemanda
+		$(document.body).on('click', '#create_student_gradecard' ,function(e){
+			$(".help").remove();
+			var template_nemandi = $("#template_nemandi").html();
+			$("#page").prepend(template_nemandi);
+		});
+		
+		//vista nemandaupplýsingar
+		$(document.body).on('click', '#update_student_info' ,function(e){
+			e.preventDefault();
+			var student_name = $("#student_name").val();
+			var student_id = $("#student_id").val();
+			$("#student_name").replaceWith("<span id='student_name'>"+student_name+"</span>");
+			$("#student_id").replaceWith("<span id='student_id'>"+student_id+"</span>");
+			$(document).prop('title', student_id);
+			$("#update_student_info").replaceWith("<button id='edit_student_info'>Breyta</button>");
+		});
+		
+		//Breyta nemendaupplýsingum
+		$(document.body).on('click', '#edit_student_info' ,function(e){
+			e.preventDefault();
+			var student_name = $("#student_name").val();
+			var student_id = $("#student_id").val();
+			$("#student_name").replaceWith("<input type='text' id='student_name' name='student_name' placeholder='Nafn nemanda' ='"+student_name+"' />");
+			$("#student_id").replaceWith("<input type='text' id='student_id' name='student_id' placeholder='Kennitala nemanda' value='"+student_id+"' />");
+			$("#edit_student_info").replaceWith("<button id='update_student_info'>Breyta</button>");
 		});
 	});
 	</script>
