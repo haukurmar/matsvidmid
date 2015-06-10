@@ -293,10 +293,11 @@
 		$(document.body).on('click', '.matsvidmid_info' ,function(e){
 			matsvidmid_id = $(this).attr("id").split("_")[1];
 			data = matsvidmid[matsvidmid_id].matsvidmid;
+			content = "";
 			for(key in data){
-				console.log(data[key]);
-				$("#matsvidmid_info_display").append("<div class='matsvidmid_"+key+"'><span>"+key.toUpperCase()+"</span><p>"+data[key]+"</p></div>");
+				content += "<div class='matsvidmid_"+key+"'><span>"+key.toUpperCase()+"</span><p>"+data[key]+"</p></div>";
 			}
+			$("#matsvidmid_info_display").html(content);
 			
 		});
 		
