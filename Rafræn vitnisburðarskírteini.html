@@ -66,58 +66,58 @@
 		<table id="table_matsvidmid">
 			<thead>
 				<tr>
-					<th colspan="9">Matsviðmið</th>
+					<th colspan="10">Matsviðmið</th>
 				</tr>
 			</thead>
 			<tbody>	
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Íslenska og íslenska sem annað tungumál</td>
+					<td class="matsvidmid_nafn" colspan="8">Íslenska og íslenska sem annað tungumál</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Íslenska - Matsviðmið fyrir íslensku og íslensku sem annað tungumál">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Íslenskt táknmál og íslenska</td>
+					<td class="matsvidmid_nafn" colspan="8">Íslenskt táknmál og íslenska</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Íslenska - Matsviðmið fyrir íslenskt táknmál og íslensku">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Erlend tungumál</td>
+					<td class="matsvidmid_nafn" colspan="8">Erlend tungumál</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Erlend tungumál">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Listgreinar</td>
+					<td class="matsvidmid_nafn" colspan="8">Listgreinar</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir listgreinar">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Verkgreinar</td>
+					<td class="matsvidmid_nafn" colspan="8">Verkgreinar</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir verkgreinar">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Náttúrugreinar</td>
+					<td class="matsvidmid_nafn" colspan="8">Náttúrugreinar</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Náttúrugreinar">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Skólaíþróttir</td>
+					<td class="matsvidmid_nafn" colspan="8">Skólaíþróttir</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Skólaíþróttir">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Samfélagsgreinar</td>
+					<td class="matsvidmid_nafn" colspan="8">Samfélagsgreinar</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Samfélagsgreinar">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Stærðfræði</td>
+					<td class="matsvidmid_nafn" colspan="8">Stærðfræði</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Stærðfræði">i</div></td>
 				</tr>
 				<tr>
 					<td class="add_namskeid"><a href="">+</a></td>
-					<td class="matsvidmid_nafn" colspan="7">Upplýsinga- og tæknimennt</td>
+					<td class="matsvidmid_nafn" colspan="8">Upplýsinga- og tæknimennt</td>
 					<td><div class="matsvidmid_info" id="matsvidmid_Upplýsinga- og tæknimennt">i</div></td>
 				</tr>
 			</tbody>
@@ -162,6 +162,7 @@
 		<td id="grade_c+"><span class="grade grade_c+">C+</span></td>
 		<td id="grade_c"><span class="grade grade_c">C</span></td>
 		<td id="grade_d"><span class="grade grade_d">D</span></td>
+		<td id="grade_star"><span class="grade grade_star">*</span></td>
 		<td class="edit_grade" id="edit_grade"><button class="update_grade">Vista</button></td>
 	</script>
 	
@@ -362,10 +363,18 @@
 			//fjarlægja fyrri einkunnir úr þessu námskeiði
 			$(this).parent().parent().find(".selected").each(function(i, obj){
 				$(this).removeClass("selected");
+				//fjarlægja athugasemdasvæði
+				if($(this).closest("tr").next().find("textarea").length > 0)
+				{
+					$(this).closest("tr").next().remove();
+				}
 			});
 			$(this).addClass("selected");
-			if($(this).hasClass("grade_d")){
-				$(this).closest("tr").after("<tr class='comment'><td colspan='8'><textarea class='course_comment'></textarea></td><td></td></tr>");
+			if($(this).hasClass("grade_d") && $(this).closest("tr").next().find("textarea").length === 0){
+				$(this).closest("tr").after("<tr class='comment'><td colspan='9'><textarea class='course_comment'></textarea></td><td></td></tr>");
+			}
+			if($(this).hasClass("grade_star") && $(this).closest("tr").next().find("textarea").length === 0){
+				$(this).closest("tr").after("<tr class='comment'><td colspan='9'><textarea class='course_comment'></textarea></td><td></td></tr>");
 			}
 		});
 		
@@ -378,10 +387,10 @@
 				alert("Þú verður að velja bókstaf");
 				return;
 			}
-			if(grade === "D"){
+			if(grade === "D" || grade === "*"){
 				var text_container = $(this).closest("tr").next().find("textarea");
 				if(text_container.val().length === 0){
-					alert("Það verður að gefa útskýringu fyrir D");
+					alert("Það verður að skrifa hæfniviðmið fyrir valda einkunn");
 					return;
 				}
 				var d_explanation = text_container.val();
