@@ -230,7 +230,7 @@
 	<script type="text/template" id="template_comment">
 		<div class="row comment">
 			<div class="col-md-6 col-md-offset-1">
-				<label class="comment_label">Hæfniviðmið</label><textarea cols="53"></textarea>
+				<label class="comment_label">Matsviðmið</label><textarea cols="53"></textarea>
 			</div>
 		</div>
 	</script>
@@ -415,6 +415,10 @@
 			
 			//add grade star selection
 			if(grade === "*"){
+				if(row.next().hasClass("comment")){
+					//add tilfærsluáætlun
+					row.next().find("div").prepend("<label class='d_check_label'>Tilfærsluáætlun</label><input type='checkbox' class='d_check' />")
+				}
 				var template_grade_star = $("#template_grade_star").html();
 				$(this).parent().replaceWith(template_grade_star);
 			}
@@ -509,7 +513,7 @@
 				//get text and replace textarea with span
 				var text_container = row.next().find("textarea");
 				if(text_container.val().length === 0){
-					alert("Það verður að skrifa hæfniviðmið fyrir valda einkunn");
+					alert("Það verður að skrifa matsviðmið fyrir valda einkunn");
 					return;
 				}
 				var d_comment = text_container.val();
@@ -519,9 +523,14 @@
 				var d_code = row.next().find("select option:selected").text();
 				row.next().find("select").replaceWith("<span class='d_code'></span>");
 				
+				//get d_check and replace with span
+				var d_checked = row.next().find("input").is(":checked");
+				row.next().find("input[type='checkbox']").replaceWith("<span class='d_check'></span>");				
+				
 				//add values to spans
 				row.next().find("span[class='d_code']").append(d_code);
 				row.next().find("span[class='d_comment']").append(d_comment);
+				 row.next().find("span[class='d_check']").append(d_checked ? "Já" : "Nei");
 				
 				//replace update button with edit button
 				row.next().find("div").append("<button class='edit_comment'>Breyta</button>");
@@ -543,20 +552,40 @@
 			
 			//update comment
 			$(this).siblings(".d_comment").replaceWith("<textarea cols='53'>"+text+"</textarea>");
+
+			//update checked
+			d_check = $(this).siblings(".d_check").html();
+			if(d_check == "Já"){
+				$(this).siblings(".d_check").replaceWith("<input type='checkbox' class='d_check' checked />");
+			}
+			else {
+				$(this).siblings(".d_check").replaceWith("<input type='checkbox' class='d_check' />");
+			}
+
 			$(this).replaceWith("<button class='update_comment'>Vista</button>");
+			
+			
 		});
 		
 		//Vista athugasemd
 		$(document.body).on('click', '.update_comment', function(e){
 			var text_container = $(this).siblings("textarea");
 			if(text_container.val().length === 0){
-				alert("Það verður að gefa útskýringu fyrir D");
+				alert("Það verður að gefa útskýringu fyrir D eða *");
 				return;
 			}
+			//get data
 			var d_explanation = text_container.val();
 			var d_code = $(this).siblings("select").val();
+			var d_checked = row.next().find("input").is(":checked");
+			d_check_value = d_checked ? "Já" : "Nei";
+			
+			//replace edit fields
 			$(this).siblings("select").replaceWith("<span class='d_code'>"+d_code+"</span>");
 			text_container.replaceWith("<span class='d_comment'>"+d_explanation+"</span>");
+			$(this).siblings("input[type='checkbox']").replaceWith("<span class='d_check'>"+d_check_value+"</span>");		
+			
+			//replace button
 			$(this).replaceWith("<button class='edit_comment'>Breyta</button>");
 		});
 		
@@ -585,7 +614,7 @@
 			}
 			
 			//Það verður að vera búið að vista nemandaupplýsingar
-			if($("input").length > 0)
+			if($("input[type='text']").length > 0)
 			{
 				alert("Það verður að slá inn upplýsingar um nemanda");
 				return;
