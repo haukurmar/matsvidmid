@@ -201,7 +201,7 @@
 	</script>
 
 	<script type="text/template" id="template_grade_save_button">
-		<div class="col-md-1 grade_select">
+		<div class="col-md-1 grade_select_button">
 			<button class="update_grade">Vista</button>
 		</div>
 	</script>
@@ -359,11 +359,11 @@
 		return str;
 	}
 	
-	function display_grade(element, grade){
+	function display_grade(row, grade){
 		var template_display_einkunn = $("#template_display_einkunn").html();
 		var template = template_display_einkunn.format(grade);
-		element.find(".grade_select").remove();
-		element.append(template);
+		row.find(".grade_select").replaceWith(template);
+		row.find(".grade_select_button").remove();
 	}
 	
 	$(function() {
@@ -443,7 +443,6 @@
 			e.preventDefault();
 			var template_namskeid = $("#template_namskeid").html();
 			var matsvidmid_id = $(this).parent().find(".matsvidmid_info").attr("id");
-			console.log(matsvidmid_id);
 			var template = template_namskeid.format(matsvidmid_id);
 			$($(this).parent()).after(template);
 		});
@@ -474,6 +473,7 @@
 				namskeid.after(template_grade);
 			});
 			$("#table_matsvidmid").after("<button id='save_grades'>Vista vitnisburðarskírteini</button>")
+			$(".add_namskeid").html("");
 		});
 		
 		//vista nemandaupplýsingar
@@ -502,25 +502,31 @@
 			e.preventDefault();
 			
 			//ná í einkunn
-			var grade = $(this).parent().parent().find("select option:selected").text();
-
+			row = $(this).parent().parent();
+			var grade = row.find("select option:selected").text();
 			//athuga að það verður að skrifa athugasemd við D og (x)*
 			if(grade === "D" || grade.indexOf("*") > -1){
-				var text_container = $(this).closest("div[class='row']").next().find("textarea");
+				//get text and replace textarea with span
+				var text_container = row.next().find("textarea");
 				if(text_container.val().length === 0){
 					alert("Það verður að skrifa hæfniviðmið fyrir valda einkunn");
 					return;
 				}
 				var d_comment = text_container.val();
-				var d_code = $(this).closest("div[class='row']").next().find("select option:selected").text();
-				var container = text_container.parent().parent();
-				$(this).closest("div[class='row']").next().find("select").replaceWith("<span class='d_code'></span>");
 				text_container.replaceWith("<span class='d_comment'></span>");
-				container.find("span[class='d_code']").append(d_code);
-				container.find("span[class='d_comment']").append(d_comment);
-				container.find("div").append("<button class='edit_comment'>Breyta</button>");
+				
+				//get selected code and replace with span
+				var d_code = row.next().find("select option:selected").text();
+				row.next().find("select").replaceWith("<span class='d_code'></span>");
+				
+				//add values to spans
+				row.next().find("span[class='d_code']").append(d_code);
+				row.next().find("span[class='d_comment']").append(d_comment);
+				
+				//replace update button with edit button
+				row.next().find("div").append("<button class='edit_comment'>Breyta</button>");
 			}
-			display_grade($(this).parent().parent(), grade);
+			display_grade(row, grade);
 		});
 		
 		//Breyta athugasemd
@@ -557,7 +563,7 @@
 		//Breyta vitnisburði
 		$(document.body).on('click', '.edit_namskeid_grade', function(e){
 			//Fjarlægja útskýringarsvæði
-			var row = $(this).closest("div[class='row']");
+			var row = $(this).parent().parent();
 			if(row.next().hasClass("comment")){
 				row.next().remove();
 			}
@@ -586,9 +592,23 @@
 			}
 
 			//Öll svið (nema valgreinar) verða að hafa námskeið
-			$(".matsvidmid_info").each(function(index){
-				console.log($(this).parent().parent());
+			var matsvidmid_list = Object.keys(matsvidmid);
+			$("div[data-id]").each(function(index){
+				var index = $.inArray($(this).attr("data-id").split("_")[1], matsvidmid_list);
+				if(index > -1){
+					matsvidmid_list.splice(index ,1 );
+				}
 			});
+			if(matsvidmid_list.length > 0){
+				if($.inArray("Valgreinar", matsvidmid_list) > -1 && matsvidmid_list.length === 1){
+					//ok to not have courses in Valgreinar
+				}
+				else {
+					alert("Það verða að vera námskeið á öllum sviðum");
+					return;
+				}
+			}
+			if($.inArray("Valgreinar", matsvidmid_list) > -1 )
 			
 			$(".edit_namskeid_grade").each(function(){
 				$(this).remove();
