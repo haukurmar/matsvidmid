@@ -179,10 +179,10 @@
 		</div>
 	</script>
 	
-	<script type="text/template" id="template_einkunnir">
+	<script type="text/template" id="template_grade">
 		<div class="col-md-1 grade_select">
 			<select>
-				<option id="grade_a" class="col-md-1" value="a"><span class="grade grade_a">A</span></option>
+				<option id="grade_a" value="a"><span class="grade grade_a">A</span></option>
 				<option id="grade_b+" value="b+"><span class="grade grade_b+">B+</span></option>
 				<option id="grade_b" value="b"><span class="grade grade_b">B</span></option>
 				<option id="grade_c+" value="c+"><span class="grade grade_c+">C+</span></option>
@@ -191,8 +191,23 @@
 				<option id="grade_star" value="*"><span class="grade grade_star">*</span></option>
 			</select>
 		</div>
+	</script>
+
+	<script type="text/template" id="template_grade_save_button">
 		<div class="col-md-1 grade_select">
 			<button class="update_grade">Vista</button>
+		</div>
+	</script>
+	
+	<script type="text/template" id="template_grade_star">
+		<div class="col-md-1 grade_select">
+			<select>
+				<option value="a*"><span class="grade grade_a*">A*</span></option>
+				<option value="b*"><span class="grade grade_b*">B*</span></option>
+				<option value="c*"><span class="grade grade_c*">C*</span></option>
+				<option value="d*"><span class="grade grade_d*">D*</span></option>
+				<option id="--" value="--"><span class="grade">--</span></option>
+			</select>
 		</div>
 	</script>
 	
@@ -204,7 +219,7 @@
 	<script type="text/template" id="template_comment">
 		<div class="row comment">
 			<div class="col-md-6 col-md-offset-1">
-				<label class="comment_label">Hæfniviðmið<textarea></textarea></label>
+				<label class="comment_label">Hæfniviðmið<textarea cols="53"></textarea></label>
 			</div>
 		</div>
 	</script>
@@ -327,7 +342,6 @@
 		var template = template_display_einkunn.format(grade);
 		element.find(".grade_select").remove();
 		element.append(template);
-		console.log(grade);
 	}
 	
 	$(function() {
@@ -343,16 +357,33 @@
 		
 		$(document.body).on('change', 'select' ,function(e){
 			var grade = $("option:selected", this).text();
+			var row = $(this).parent().parent();
 			var template_comment = $("#template_comment").html();
-
-			//remove textarea if exists (ex. change from D to *)
-			if($(this).parent().parent().next().hasClass("comment")){
-					$(this).parent().parent().next().remove();
-				}
 			
-			if(grade === "D" || grade === "*"){
-				//add textarea
-				$(this).parent().parent().after(template_comment);
+			if(grade === "D" || grade.indexOf("*") > -1){
+				if(row.next().hasClass("comment")){
+					//textarea already exits, skip
+				}
+				else {
+					row.after(template_comment);
+				}
+			}
+			else {
+				if(row.next().hasClass("comment")){
+					row.next().remove();
+				}
+			}
+			
+			//add grade star selection
+			if(grade === "*"){
+				var template_grade_star = $("#template_grade_star").html();
+				$(this).parent().replaceWith(template_grade_star);
+			}
+			
+			//add normal grade selection
+			if(grade === "--"){
+				var template_grade = $("#template_grade").html();
+				$(this).parent().replaceWith(template_grade);
 			}
 		});
 		
@@ -392,11 +423,13 @@
 			var template_nemandi = $("#template_nemandi").html();
 			$("#page").prepend(template_nemandi); //bæta við svæði fyrir nemendaupplýsingar
 			//bæta við einkunnum
-			var template_einkunnir = $("#template_einkunnir").html();
+			var template_grade = $("#template_grade").html();
+			var template_grade_save_button = $("#template_grade_save_button").html();
 			$(".namskeid_nafn").each(function(i, obj){
 				var namskeid = $(this);
 				namskeid.removeAttr("colspan");
-				namskeid.after(template_einkunnir);
+				namskeid.after(template_grade_save_button);
+				namskeid.after(template_grade);
 			});
 			$("#table_matsvidmid").after("<button id='save_grades'>Vista vitnisburðarskírteini</button>")
 		});
@@ -478,9 +511,11 @@
 				row.next().remove();
 			}
 			//insert template for grade select
-			var template_einkunnir = $("#template_einkunnir").html();
+			var template_grade = $("#template_grade").html();
+			var template_grade_save_button = $("#template_grade_save_button").html();
 			row.find(".grade_edit").remove();
-			row.append(template_einkunnir);
+			row.append(template_grade);
+			row.append(template_grade_save_button);
 		});
 		
 		//Vista vitnisburð
