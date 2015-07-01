@@ -17,11 +17,6 @@
 			font-weight: bold;
 		}
 		
-		.comment
-		{
-			white-space: pre-wrap;
-		}
-		
 		.add_namskeid
 		{
 			text-align: right;
@@ -76,8 +71,8 @@
 	</style>
 </head>
 <body>
-	<header><h1>Rafræn vitnisburðarskírteini</h1></header>
-	<div id="page container">
+	<header><h1>Rafrænt vitnisburðarskírteini</h1></header>
+	<div id="page" class="container">
 		<div class="help">
 			<h3>Vitnisburðarskírteini skóla</h3>
 			<p>Bætið við námskeiðum með því að smella á + fyrir framan matsviðmið.</p>
@@ -208,21 +203,20 @@
 	
 	<script type="text/template" id="template_comment">
 		<div class="row comment">
-			<div class="col-md-2">Athugasemdir</div>
-			<div class="col-md-6">
-				<textarea></textarea>
+			<div class="col-md-6 col-md-offset-1">
+				<label class="comment_label">Hæfniviðmið<textarea></textarea></label>
 			</div>
 		</div>
 	</script>
 	
 	<script type="text/template" id="template_nemandi">
-	<div id="student_info">
-		<label for="student_name">Nemandi</label>
-		<input type="text" id="student_name" name="student_name" placeholder="Nafn nemanda" />
-		<label for="student_id">Kennitala</label>
-		<input type="text" id="student_id" name="student_id" placeholder="Kennitala nemanda" />
-		<button id="update_student_info">Vista</button>
-	</div>
+		<div id="student_info">
+			<label for="student_name">Nemandi</label>
+			<input type="text" id="student_name" name="student_name" placeholder="Nafn nemanda" />
+			<label for="student_id">Kennitala</label>
+			<input type="text" id="student_id" name="student_id" placeholder="Kennitala nemanda" />
+			<button id="update_student_info">Vista</button>
+		</div>
 	</script>
 	<!-- /Templates -->
 	
@@ -350,15 +344,15 @@
 		$(document.body).on('change', 'select' ,function(e){
 			var grade = $("option:selected", this).text();
 			var template_comment = $("#template_comment").html();
+
+			//remove textarea if exists (ex. change from D to *)
+			if($(this).parent().parent().next().hasClass("comment")){
+					$(this).parent().parent().next().remove();
+				}
+			
 			if(grade === "D" || grade === "*"){
 				//add textarea
 				$(this).parent().parent().after(template_comment);
-			}
-			else{
-				//remove textarea
-				if($(this).parent().parent().next().hasClass("comment")){
-					$(this).parent().parent().next().remove();
-				}
 			}
 		});
 		
@@ -428,25 +422,6 @@
 			$("#edit_student_info").replaceWith("<button id='update_student_info'>Breyta</button>");
 		});
 		
-		//Gefa vitnisburð
-		$(document.body).on('click', '.grade' ,function(e){
-			e.preventDefault();
-			//fjarlægja fyrri einkunnir úr þessu námskeiði
-			$(this).parent().parent().find(".selected").each(function(i, obj){
-				$(this).removeClass("selected");
-				//fjarlægja athugasemdasvæði
-				if($(this).closest("tr").next().find("textarea").length > 0)
-				{
-					$(this).closest("tr").next().remove();
-				}
-			});
-			$(this).addClass("selected");
-			//ef D eða * er valin þá þarf að bæta við athugasemdasvæði
-			if(($(this).hasClass("grade_d") || $(this).hasClass("grade_star")) && $(this).closest("tr").next().find("textarea").length === 0){
-				$(this).closest("tr").after("<tr class='comment'><td colspan='2'>Athugasemdir</colspan><td colspan='7'><textarea class='course_comment'></textarea></td><td></td></tr>");
-			}
-		});
-		
 		//Vista vitnisburð
 		$(document.body).on('click', '.update_grade' ,function(e){
 			e.preventDefault();
@@ -497,15 +472,15 @@
 		
 		//Breyta vitnisburði
 		$(document.body).on('click', '.edit_namskeid_grade', function(e){
-			//skipta út einkunn fyrir vali á einkunn
+			//Fjarlægja útskýringarsvæði
+			var row = $(this).closest("div[class='row']");
+			if(row.next().hasClass("comment")){
+				row.next().remove();
+			}
+			//insert template for grade select
 			var template_einkunnir = $("#template_einkunnir").html();
-			var row = $(this).parent().parent();
 			row.find(".grade_edit").remove();
 			row.append(template_einkunnir);
-			//Fjarlægja útskýringarsvæði
-			if($(this).closest("div[class='row']").next().hasClass("comment")){
-				$(this).closest("div[class='row']").next().remove();
-			}
 		});
 		
 		//Vista vitnisburð
@@ -524,9 +499,6 @@
 			}			
 			$(".edit_namskeid_grade").each(function(){
 				$(this).remove();
-			});
-			$("td[colspan='6']").each(function(){
-				$(this).attr("colspan",7);
 			});
 			$("button").remove();
 			$("a").remove();
