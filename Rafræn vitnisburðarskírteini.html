@@ -149,6 +149,13 @@
 					<div class="matsvidmid_info" id="matsvidmid_Upplýsinga- og tæknimennt">i</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="add_namskeid col-md-1"><a href="">+</a></div>
+				<div class="matsvidmid_nafn col-md-4">Valgreinar</div>
+				<div class="col-md-1">
+					<div class="matsvidmid_info" id="matsvidmid_Valgreinar">i</div>
+				</div>
+			</div>			
 		</div>
 		<div class="help">
 			<h3>Vitnisburðaskírteini nemanda</h3>
@@ -170,7 +177,7 @@
 </body>
 	<!-- Templates -->
 	<script type="text/template" id="template_namskeid">
-		<div class="row">
+		<div class="row namskeid" data-id="{0}">
 			<div class="remove_namskeid col-md-1"><a href="" class="namskeid_control">-</a></div>
 			<div class="namskeid_nafn col-md-4">
 				<input type="text" placeholder="Nafn námskeiðs" />
@@ -181,7 +188,7 @@
 	
 	<script type="text/template" id="template_grade">
 		<div class="col-md-1 grade_select">
-			<select>
+			<select class="grades">
 				<option id="grade_a" value="a"><span class="grade grade_a">A</span></option>
 				<option id="grade_b+" value="b+"><span class="grade grade_b+">B+</span></option>
 				<option id="grade_b" value="b"><span class="grade grade_b">B</span></option>
@@ -201,7 +208,7 @@
 	
 	<script type="text/template" id="template_grade_star">
 		<div class="col-md-1 grade_select">
-			<select>
+			<select class="grades">
 				<option value="a*"><span class="grade grade_a*">A*</span></option>
 				<option value="b*"><span class="grade grade_b*">B*</span></option>
 				<option value="c*"><span class="grade grade_c*">C*</span></option>
@@ -210,6 +217,10 @@
 			</select>
 		</div>
 	</script>
+
+	<script type="text/template" id="template_d_codes">
+		<option value="{0}">{0}</option>
+	</script>	
 	
 	<script type="text/template" id="template_display_einkunn">
 		<div class="col-md-1 grade_edit">{0}</div>
@@ -219,7 +230,7 @@
 	<script type="text/template" id="template_comment">
 		<div class="row comment">
 			<div class="col-md-6 col-md-offset-1">
-				<label class="comment_label">Hæfniviðmið<textarea cols="53"></textarea></label>
+				<label class="comment_label">Hæfniviðmið</label><textarea cols="53"></textarea>
 			</div>
 		</div>
 	</script>
@@ -325,8 +336,19 @@
 			"b": "Nemandi getur nýtt sér margskonar tæknibúnað, hugbúnað, forrit og gögn á ábyrgan og skapandi hátt. Nýtt vel hugbúnað og forrit við uppsetningu ritsmíða og tölulegra gagna. Á ábyrgan hátt vegið og metið gæði upplýsinga til þekkingarmiðlunar, virt siðferði í heimildarvinnu og unnið með heimildir eftir viðukenndum aðferðum. Nýtt sér vel möguleika rafræns stuðnings- og námsefnis á ýmsu formi.",
 			"c": "Nemandi getur nýtt sér að nokkru leyti margskonar tæknibúnað, hugbúnað, forrit og gögn á ábyrgan og skapandi hátt. Nýtt sér sæmilega hugbúnað og forrit við uppsetningu ritsmíða og tölulegra gagna. Að vissu marki vegið og metið gæði upplýsinga til þekkingarmiðlunar, virt siðferði í heimildarvinnu og unnið með heimildir eftir viðukenndum aðferðum. Nýtt sér nokkuð vel möguleika rafræns stuðnings- og námsefnis á ýmsu formi."
 		}
+	},
+	"Valgreinar": {
+		"tegund": "matsvidmid",
+		"matsvidmid":{
+			"a": "Nemandi er almennt lengra kominn en hæfniviðmið gera ráð fyrir",
+			"b": "Nemandi stenst hæfniviðmið",
+			"c": "Nemandi stenst ekki hæfniviðmið"
+		}
 	}
 }
+	var d_codes = [
+		"1", "2", "3", "..."
+	];
 
 	String.prototype.format = function() {
 		var str = this;
@@ -355,7 +377,7 @@
 		
 		//register event handlers
 		
-		$(document.body).on('change', 'select' ,function(e){
+		$(document.body).on('change', 'select.grades' ,function(e){
 			var grade = $("option:selected", this).text();
 			var row = $(this).parent().parent();
 			var template_comment = $("#template_comment").html();
@@ -372,6 +394,23 @@
 				if(row.next().hasClass("comment")){
 					row.next().remove();
 				}
+			}
+			
+			//insert or remove d_codes
+			if(grade.indexOf("D") > -1){
+				//add d_codes
+				var template_d_codes = $("#template_d_codes").html();
+				if(row.next().hasClass("comment")){
+					row.next().find("div").prepend("<label class='d_code_label'>Kóði</label><select class='d_codes'></select>")
+					for(i in d_codes) {
+						var template = template_d_codes.format(i);
+						row.next().find("select").append(template);
+					}
+				}
+			}
+			else {
+				//remove the code
+				$(".d_codes").remove();
 			}
 			
 			//add grade star selection
@@ -403,7 +442,10 @@
 		$(document.body).on('click', '.add_namskeid' ,function(e){
 			e.preventDefault();
 			var template_namskeid = $("#template_namskeid").html();
-			$($(this).parent()).after(template_namskeid);
+			var matsvidmid_id = $(this).parent().find(".matsvidmid_info").attr("id");
+			console.log(matsvidmid_id);
+			var template = template_namskeid.format(matsvidmid_id);
+			$($(this).parent()).after(template);
 		});
 		
 		//fjarlægja námskeið
@@ -462,45 +504,54 @@
 			//ná í einkunn
 			var grade = $(this).parent().parent().find("select option:selected").text();
 
-			//athuga að það verður að skrifa athugasemd við D og *
-			if(grade === "D" || grade === "*"){
+			//athuga að það verður að skrifa athugasemd við D og (x)*
+			if(grade === "D" || grade.indexOf("*") > -1){
 				var text_container = $(this).closest("div[class='row']").next().find("textarea");
 				if(text_container.val().length === 0){
 					alert("Það verður að skrifa hæfniviðmið fyrir valda einkunn");
 					return;
 				}
-				var d_explanation = text_container.val();
-				var container = text_container.parent();
-				text_container.remove();
-				container.append(d_explanation);
-				container.next().append("<button class='edit_comment'>Breyta</button>");
+				var d_comment = text_container.val();
+				var d_code = $(this).closest("div[class='row']").next().find("select option:selected").text();
+				var container = text_container.parent().parent();
+				$(this).closest("div[class='row']").next().find("select").replaceWith("<span class='d_code'></span>");
+				text_container.replaceWith("<span class='d_comment'></span>");
+				container.find("span[class='d_code']").append(d_code);
+				container.find("span[class='d_comment']").append(d_comment);
+				container.find("div").append("<button class='edit_comment'>Breyta</button>");
 			}
 			display_grade($(this).parent().parent(), grade);
 		});
 		
 		//Breyta athugasemd
 		$(document.body).on('click', '.edit_comment', function(e){
-			var container = $(this).parent().prev();
-			var text = container.html();
-			container.html("");
-			container.append("<textarea class='course_comment'>"+text+"</textarea>");
-			$(this).parent().append("<button class='update_comment'>Vista</button>");
-			$(this).remove();
+			var text = $(this).siblings(".d_comment").html();
+			
+			//update codes
+			var template_d_codes = $("#template_d_codes").html();
+			$(this).siblings(".d_code").replaceWith("<select class='d_codes'></select>");
+			for(i in d_codes) {
+				var template = template_d_codes.format(i);
+				$(this).siblings("select").append(template);
+			}
+			
+			//update comment
+			$(this).siblings(".d_comment").replaceWith("<textarea cols='53'>"+text+"</textarea>");
+			$(this).replaceWith("<button class='update_comment'>Vista</button>");
 		});
 		
 		//Vista athugasemd
 		$(document.body).on('click', '.update_comment', function(e){
-			var text_container = $(this).closest("tr").find("textarea");
+			var text_container = $(this).siblings("textarea");
 			if(text_container.val().length === 0){
 				alert("Það verður að gefa útskýringu fyrir D");
 				return;
 			}
 			var d_explanation = text_container.val();
-			var container = text_container.parent();
-			text_container.remove();
-			container.append(d_explanation);
-			container.next().append("<button class='edit_comment'>Breyta</button>");
-			$(this).remove();
+			var d_code = $(this).siblings("select").val();
+			$(this).siblings("select").replaceWith("<span class='d_code'>"+d_code+"</span>");
+			text_container.replaceWith("<span class='d_comment'>"+d_explanation+"</span>");
+			$(this).replaceWith("<button class='edit_comment'>Breyta</button>");
 		});
 		
 		//Breyta vitnisburði
@@ -526,12 +577,19 @@
 				alert("Það verður að velja bókstaf fyrir öll námskeið");
 				return;
 			}
+			
 			//Það verður að vera búið að vista nemandaupplýsingar
 			if($("input").length > 0)
 			{
 				alert("Það verður að slá inn upplýsingar um nemanda");
 				return;
-			}			
+			}
+
+			//Öll svið (nema valgreinar) verða að hafa námskeið
+			$(".matsvidmid_info").each(function(index){
+				console.log($(this).parent().parent());
+			});
+			
 			$(".edit_namskeid_grade").each(function(){
 				$(this).remove();
 			});
