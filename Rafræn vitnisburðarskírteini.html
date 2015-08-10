@@ -425,6 +425,8 @@
 	var d_codes = [
 		"1", "2", "3", "..."
 	];
+	
+	var einstok_matsvidmid = 11;
 
 	String.prototype.format = function() {
 		var str = this;
@@ -566,6 +568,18 @@
 		
 		//búa til vitnisburðarskírteini nemanda
 		$(document.body).on('click', '#create_student_gradecard' ,function(e){
+			//Athuga hvort búið er að búa til fög fyrir öll matsviðmið
+			var namskeid_ids = $(".namskeid").map(function(i, obj){
+				return $(obj).attr("data-id");
+			});
+			if($.unique(namskeid_ids).length == einstok_matsvidmid){
+				;
+			}
+			else{
+				alert("Það verður að búa til námskeið fyrir öll matsviðmið");
+				return;
+			}
+			
 			$(".help").remove(); //fjarlægja upplýsingasvæði
 			var template_nemandi = $("#template_nemandi").html();
 			$("#page").prepend(template_nemandi); //bæta við svæði fyrir nemendaupplýsingar
