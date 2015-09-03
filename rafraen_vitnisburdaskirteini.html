@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="is">
 	<head>
+	<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Rafræn vitnisburðarskírteini</title>
 	
@@ -17,7 +20,11 @@
 		}
 
 		header {
-			text-align: center;			
+			text-align: center;	
+			background-color: #0c75a0;	
+			font-family: 'Open Sans';	
+			font-weight: lighter;
+
 		}
 
 		h1 {
@@ -102,15 +109,124 @@
 		.btn {
 			margin-top: 2px;
 		}
+
+		#upfile1 {
+			cursor:pointer;
+			height:150px;
+			width:150px;
+			color:#fff;
+		}
+
+		img {
+			font-size:11px;
+		}
+		#schoolName{
+		float:left;
+		color:#fff;
+		margin-top:100px;
+		}
+
+		#cardName{
+
+		color:#fff;
+		margin-top:122px;
+
+		}
+
+		#cardName h3{
+		font-size: 16px;
+
+		}
+
+		.glyphicon-pencil{
+		color:#fff !important;
+		}
+		.glyphicon-ok{
+		color:#fff !important;
+
+		}
+
+			#schoolName ::-webkit-input-placeholder {
+			   background-color: #0c75a0;
+			   text-align: center;
+			}
+
+			#schoolName :-moz-placeholder { /* Firefox 18- */
+			   background-color: #0c75a0; 
+			   text-align: center; 
+			}
+
+			#schoolName ::-moz-placeholder {  /* Firefox 19+ */
+			   background-color: #0c75a0;
+			   text-align: center;  
+			}
+
+			#schoolName :-ms-input-placeholder {  
+			   background-color: #0c75a0; 
+			   text-align: center; 
+			}
+
+			#schoolName input:focus{
+				background-color: #0c75a0;
+				color: white;
+				}
+
+		@media screen and (min-width: 768px) {
+	
+			 .modal-dialog  {width:50%;}
+
+		}
+
+		.modal-header{
+		background-color:#0C75A0 !important;
+		color:#fff;
+		}
+
+		.modal-header button{
+		color:#fff;
+		}
+
+
+	
 		
 	</style>
 </head>
 <body>
 	<header>
-			<h1>Rafrænt vitnisburðarskírteini</h1>
-			<a href="#">
-				<span class="glyphicon glyphicon-pencil"></span>
-			</a>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-2">
+				<div id="logoContainer">
+
+				<input type='file' id="file1" onchange="readURL(this); "style="display:none" />
+	    		<img id="logoSchool" src="#" alt="" style="display:none" />
+	    		<img id="upfile1" alt="Smelltu hér til að hlaða inn mynd í stærð 150 x 150px" />
+
+	    		</div>
+    		</div>
+
+			<div class="col-md-6">
+				<div id="schoolName">
+
+					<h1>Sláðu inn nafn skóla</h1>
+					<a href="#">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+				</div>
+    		</div>
+
+    		<div class="col-md-4">
+				<div id="cardName">
+
+					<h3>Rafrænt vitnisburðarskírteini</h3>
+					
+				</div>
+    		</div>
+    	</div>
+   </div>
+
 	</header>
 	<div id="page" class="container">
 		<div class="help">
@@ -136,84 +252,84 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<div id="table_matsvidmid">
 					<h3>Matsviðmið</h3>
-					<div class="row">
+					<!-- <div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Íslenska og íslenska sem annað tungumál</div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Íslenska - Matsviðmið fyrir íslensku og íslensku sem annað tungumál"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Íslenskt táknmál og íslenska</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Íslenska - Matsviðmið fyrir íslenskt táknmál og íslensku"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Íslenska - Matsviðmið fyrir íslenskt táknmál og íslensku"data-toggle="modal" data-target="#islenska"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Erlend tungumál</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Erlend tungumál"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Erlend tungumál" data-toggle="modal" data-target="#erlent"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Listgreinar</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir listgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir listgreinar" data-toggle="modal" data-target="#listgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Verkgreinar</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir verkgreinar"><span class="glyphicon glyphicon-info-sign"></span></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir verkgreinar"  data-toggle="modal" data-target="#verkgreinar"><span class="glyphicon glyphicon-info-sign"></span></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Náttúrugreinar</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Náttúrugreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Náttúrugreinar" data-toggle="modal" data-target="#natturugreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Skólaíþróttir</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Skólaíþróttir"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Skólaíþróttir" data-toggle="modal" data-target="#ithrottir"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Samfélagsgreinar</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Samfélagsgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Samfélagsgreinar" data-toggle="modal" data-target="#samfelagsgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Stærðfræði</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Stærðfræði"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Stærðfræði" data-toggle="modal" data-target="#staerdfraedi"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Upplýsinga- og tæknimennt</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Upplýsinga- og tæknimennt"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Upplýsinga- og tæknimennt" data-toggle="modal" data-target="#upplysingamennt"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Valgreinar</div>
 						<div class="col-md-2">
-							<div class="matsvidmid_info" id="matsvidmid_Valgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
+							<div class="matsvidmid_info" id="matsvidmid_Valgreinar" data-toggle="modal" data-target="#valgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>			
 				</div>
@@ -221,7 +337,239 @@
 					<button class="btn btn-sm btn-primary" id="create_school_gradecard">Búa til skólaskírteini</button>
 					<button class="btn btn-sm btn-primary" id="create_student_gradecard">Búa til vitnisburðaskírteini nemanda</button>
 				</div>
-				<div id="matsvidmid_info_display"></div>
+
+
+	
+	<!-- Modal of matsvidmid -->
+
+					<div class="modal fade" id="islenska" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir íslensku</h4>
+					        </div>
+					        <div class="modal-body">
+
+					     		<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+
+					  <div class="modal fade" id="erlent" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir erlend tungumál</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="listgreinar" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir listgreinar</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="verkgreinar" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir verkgreinar</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="natturugreinar" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir náttúrugreinar</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="ithrottir" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir íþróttir</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="samfelagsgreinar" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir samfélagsgreinar</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="staerdfraedi" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir stærðfræði</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="upplysingamennt" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir upplýsinga - og tæknimennt</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+					  <div class="modal fade" id="valgreinar" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Matsviðmið fyrir valgreinar</h4>
+					        </div>
+					        <div class="modal-body">
+
+					        	<div class="matsvidmid_info_display"></div>
+
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Loka</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+
+
+
+
+
+	<!-- Modal of matsvidmid -->
+
+
 			</div>
 		</div>
 	</div>
@@ -367,19 +715,44 @@
 	<script id="jquery" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-
+	
 	<script id="main.js">
+
+//upload img
+	$("#upfile1").click(function () {
+    $("#file1").trigger('click');
+});
+
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#logoSchool')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(150);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+            $("#upfile1").hide();
+            $("#logoSchool").show();
+        }
+    }
+
+
 	<!-- Matsviðmiðagögn -->
 	var matsvidmid = 
 	{
-	"Íslenska - Matsviðmið fyrir íslensku og íslensku sem annað tungumál": {
-		"tegund": "matsvidmid",
-		"matsvidmid": {
-			"a": "Nemandi getur flutt mál sitt mjög skýrt og áheyrilega með blæbrigðum og áherslum sem hæfa efni og tilefni. Hlustað af athygli og nýtt sér upplýsingar í töluðu máli til fróðleiks, skemmtunar og sem heimildir í vinnu. Getur notið myndefnis, leikins efnis, tónlistar og sett fram á sjálfstæðan hátt rökstutt mat á viðkomandi efni.<p></p>Lesið mjög vel og af öryggi almenna texta, með mjög góðum skilningi og túlkun á efni þeirra, fjallað um íslenskar og erlendar bókmenntir á gagnrýninn hátt og gert sér góða grein fyrir gildi bókmennta í menningu þjóðarinnar.<p></p>Beitt skipulegum og mjög góðum vinnubrögðum við ritun, skipað efnisatriðum í röklegt samhengi og mótað málsgreinar og efnisgreinar af öryggi og á skýran hátt. Beitt stafsetningu og greinarmerkjasetningu af öryggi og fylgt mjög vel viðmiðum um uppbyggingu texta.<p></p>Beitt mjög vel og af öryggi málfræðihugtökum í umræðu um notkun málsins og þróun þess, þekkingu sinni á beygingarlegum og merkingarlegum einkennum orðflokka og gert sér mjög góða grein fyrir hlutverki þeirra.",
-			"b": "Nemandi getur flutt mál sitt skýrt og áheyrilega með blæbrigðum og áherslum sem hæfa efni og tilefni. Hlustað og nýtt sér upplýsingar í töluðu máli til fróðleiks, skemmtunar og sem heimildir í vinnu, og notið myndefnis, leikins efnis, tónlistar og sett fram rökstutt mat á viðkomandi efni.<p></p>Lesið almenna texta, með góðum skilningi og túlkun á efni þeirra, fjallað um íslenskar og erlendar bókmenntir og gert sér góða grein fyrir gildi bókmennta í menningu þjóðarinnar.<p></p>Beitt skipulegum og góðum vinnubrögðum við ritun, skipað efnisatriðum í samhengi og mótað málsgreinar og efnisgreinar á skýran hátt. Beitt stafsetningu og greinarmerkjasetningu af nokkru öryggi og fylgt vel viðmiðum um uppbyggingu texta.<p></p>Beitt málfræðihugtökum í umræðu um notkun málsins og þróun þess, og beitt af nokkru öryggi þekkingu sinni á beygingarlegum og merkingarlegum einkennum orðflokka og gert sér góða grein fyrir hlutverki þeirra.",
-			"c": "Nemandi getur flutt mál sitt sæmilega skýrt og nokkuð áheyrilega, með áherslum sem hæfa efni og tilefni. Hlustað og nýtt sér að nokkru leyti upplýsingar í töluðu máli til fróðleiks, skemmtunar og sem heimildir í vinnu, og notið myndefnis, leikins efnis, tónlistar og sett fram sæmilegt mat á viðkomandi efni.<p></p>Lesið almenna texta, með sæmilegum skilningi og túlkun á efni þeirra, fjallað um íslenskar og erlendar bókmenntir og gert sér grein fyrir gildi bókmennta í menningu þjóðarinnar.<p></p>Beitt að vissu marki góðum vinnubrögðum við ritun, skipað efnisatriðum í samhengi og mótað málsgreinar og efnisgreinar, beitt stafsetningu og greinarmerkjasetningu sæmilega og fylgt viðmiðum um uppbyggingu texta.<p></p>Beitt helstu málfræðihugtökum í umræðu um notkun málsins. Beitt að nokkru leyti þekkingu sinni á beygingarlegum og merkingarlegum einkennum orðflokka og gert sér sæmilega grein fyrir hlutverki þeirra."
-		}
-	},
+	// "Íslenska - Matsviðmið fyrir íslensku og íslensku sem annað tungumál": {
+	// 	"tegund": "matsvidmid",
+	// 	"matsvidmid": {
+	// 		"a": "Nemandi getur flutt mál sitt mjög skýrt og áheyrilega með blæbrigðum og áherslum sem hæfa efni og tilefni. Hlustað af athygli og nýtt sér upplýsingar í töluðu máli til fróðleiks, skemmtunar og sem heimildir í vinnu. Getur notið myndefnis, leikins efnis, tónlistar og sett fram á sjálfstæðan hátt rökstutt mat á viðkomandi efni.<p></p>Lesið mjög vel og af öryggi almenna texta, með mjög góðum skilningi og túlkun á efni þeirra, fjallað um íslenskar og erlendar bókmenntir á gagnrýninn hátt og gert sér góða grein fyrir gildi bókmennta í menningu þjóðarinnar.<p></p>Beitt skipulegum og mjög góðum vinnubrögðum við ritun, skipað efnisatriðum í röklegt samhengi og mótað málsgreinar og efnisgreinar af öryggi og á skýran hátt. Beitt stafsetningu og greinarmerkjasetningu af öryggi og fylgt mjög vel viðmiðum um uppbyggingu texta.<p></p>Beitt mjög vel og af öryggi málfræðihugtökum í umræðu um notkun málsins og þróun þess, þekkingu sinni á beygingarlegum og merkingarlegum einkennum orðflokka og gert sér mjög góða grein fyrir hlutverki þeirra.",
+	// 		"b": "Nemandi getur flutt mál sitt skýrt og áheyrilega með blæbrigðum og áherslum sem hæfa efni og tilefni. Hlustað og nýtt sér upplýsingar í töluðu máli til fróðleiks, skemmtunar og sem heimildir í vinnu, og notið myndefnis, leikins efnis, tónlistar og sett fram rökstutt mat á viðkomandi efni.<p></p>Lesið almenna texta, með góðum skilningi og túlkun á efni þeirra, fjallað um íslenskar og erlendar bókmenntir og gert sér góða grein fyrir gildi bókmennta í menningu þjóðarinnar.<p></p>Beitt skipulegum og góðum vinnubrögðum við ritun, skipað efnisatriðum í samhengi og mótað málsgreinar og efnisgreinar á skýran hátt. Beitt stafsetningu og greinarmerkjasetningu af nokkru öryggi og fylgt vel viðmiðum um uppbyggingu texta.<p></p>Beitt málfræðihugtökum í umræðu um notkun málsins og þróun þess, og beitt af nokkru öryggi þekkingu sinni á beygingarlegum og merkingarlegum einkennum orðflokka og gert sér góða grein fyrir hlutverki þeirra.",
+	// 		"c": "Nemandi getur flutt mál sitt sæmilega skýrt og nokkuð áheyrilega, með áherslum sem hæfa efni og tilefni. Hlustað og nýtt sér að nokkru leyti upplýsingar í töluðu máli til fróðleiks, skemmtunar og sem heimildir í vinnu, og notið myndefnis, leikins efnis, tónlistar og sett fram sæmilegt mat á viðkomandi efni.<p></p>Lesið almenna texta, með sæmilegum skilningi og túlkun á efni þeirra, fjallað um íslenskar og erlendar bókmenntir og gert sér grein fyrir gildi bókmennta í menningu þjóðarinnar.<p></p>Beitt að vissu marki góðum vinnubrögðum við ritun, skipað efnisatriðum í samhengi og mótað málsgreinar og efnisgreinar, beitt stafsetningu og greinarmerkjasetningu sæmilega og fylgt viðmiðum um uppbyggingu texta.<p></p>Beitt helstu málfræðihugtökum í umræðu um notkun málsins. Beitt að nokkru leyti þekkingu sinni á beygingarlegum og merkingarlegum einkennum orðflokka og gert sér sæmilega grein fyrir hlutverki þeirra."
+	// 	}
+	// },
 	"Íslenska - Matsviðmið fyrir íslenskt táknmál og íslensku": {
 		"tegund": "matsvidmid",
 		"matsvidmid": {
@@ -465,7 +838,7 @@
 		"1", "2", "3", "..."
 	];
 	
-	var einstok_matsvidmid = 10;
+	var einstok_matsvidmid = 9;
 
 	String.prototype.format = function() {
 		var str = this;
@@ -523,18 +896,56 @@
 
 		//register event handlers
 
-		$(document.body).on('click', 'header a' ,function(e){
+		
+
+		
+		$(document.body).on('click', '#schoolName a ' ,function(e){
 			e.preventDefault();
+
+
 			console.log("clicking header");
+
+			checkGlyphicion()
+
+			
+		});
+
+
+		function checkGlyphicion(){
+
 			if($('header a span').hasClass("glyphicon-ok")){
+
 				$('header h1').html($('header h1 input').val());
 				$('header a').html($('<span class="glyphicon glyphicon-pencil"></span>'));
-			}
-			else {
+
+			}else {
+
 				$('header h1').html($('<input placeholder="Sláðu inn nafn skóla"/>'));
+				//focus on placeholder if button preseed
+				$('#schoolName input').focus();
 				$('header a').html($('<span class="glyphicon glyphicon-ok"></span>'));
+ 
+				    
+				}
+
+
 			}
+
+
+		$(document.body).on('click keyup', '.update_namskeid_nafn' ,function(e){
+			name = $(this).prev().val();
+			if(e.type === "keyup" && e.which != 13) {
+				return ;
+			}
+			else if(e.type === "keyup") {
+				name = $(this).val();
+			}
+			if(e.type === "click" && $(this).is("input")) {
+				return ;
+			}
+			save_course_name($(this), name);
 		});
+
 
 		
 		$(document.body).on('change', 'select.grades' ,function(e){
@@ -601,9 +1012,11 @@
 			data = matsvidmid[matsvidmid_id].matsvidmid;
 			content = "";
 			for(key in data){
-				content += "<div class='matsvidmid_"+key+"'><span>"+key.toUpperCase()+"</span><p>"+data[key]+"</p></div>";
+			content += "<div class='matsvidmid_"+key+"'><span>"+key.toUpperCase()+"</span><p>"+data[key]+"</p></div>";
 			}
-			$("#matsvidmid_info_display").html(content);
+
+
+			$(".matsvidmid_info_display").html(content);
 			
 		});
 		
