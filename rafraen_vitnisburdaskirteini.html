@@ -11,6 +11,14 @@
 	
 	<style>
 
+	body{
+	
+		font-family: 'Open Sans';	
+		font-weight: lighter;
+		
+		}
+
+
 		#create_student_gradecard {
 			display: none;
 		}
@@ -21,7 +29,7 @@
 
 		header {
 			text-align: center;	
-			background-color: #0c75a0;	
+			background-color: #1ca0cb;	
 			font-family: 'Open Sans';	
 			font-weight: lighter;
 
@@ -37,7 +45,11 @@
 		}
 
 		#table_matsvidmid {
-			background-color: #dddddd;	
+		background-color: #F5F3F3;	
+		}
+
+		.textCenter{
+		text-align: center;
 		}
 
 		.row.namskeid, .row.comment {
@@ -46,6 +58,10 @@
 
 		.matsvidmid_nafn {
 			font-weight: bold;
+		}
+
+		.matsvidmid_nafn p {
+		margin-top:7px;
 		}
 
 		 .selected.grade {
@@ -120,11 +136,8 @@
 		img {
 			font-size:11px;
 		}
-		#schoolName{
-		float:left;
-		color:#fff;
-		margin-top:100px;
-		}
+
+		
 
 		#cardName{
 
@@ -146,34 +159,118 @@
 
 		}
 
-			#schoolName ::-webkit-input-placeholder {
-			   background-color: #0c75a0;
-			   text-align: center;
-			}
+		.topLine{
+		background-color:#1ca0cb;
+		color:#fff;
+		margin-bottom: 15px;
+		margin-right: 0px;
+		margin-left: 0px;
 
-			#schoolName :-moz-placeholder { /* Firefox 18- */
-			   background-color: #0c75a0; 
-			   text-align: center; 
-			}
+		}
 
-			#schoolName ::-moz-placeholder {  /* Firefox 19+ */
-			   background-color: #0c75a0;
-			   text-align: center;  
-			}
+		.topLine p{
+		margin-top: 10px;
+		font-size: 15px;
 
-			#schoolName :-ms-input-placeholder {  
-			   background-color: #0c75a0; 
-			   text-align: center; 
-			}
+		}
 
-			#schoolName input:focus{
-				background-color: #0c75a0;
-				color: white;
-				}
+		.topLine2{
+		background-color:#1ca0cb;
+		color:#fff;
+		margin-bottom: 15px;
+		margin-right: 0px;
+		margin-left: 0px;
+
+		}
+
+		.topLine2 p{
+		margin-top: 10px;
+		font-size: 15px;
+
+		}
+
+		.topLine3{
+		background-color:#1ca0cb;
+		color:#fff;
+		margin-bottom: 15px;
+		margin-right: 0px;
+		margin-left: 0px;
+
+		}
+
+		.topLine3 p{
+		margin-top: 10px;
+		font-size: 15px;
+
+		}
+
+
+
+
+		#schoolName{
+		color:#fff;
+		margin-top:5px;
+		}
+
+		#schoolName ::-webkit-input-placeholder {
+		/*background-color: #0c75a0;*/
+		text-align: center;
+		}
+
+		#schoolName :-moz-placeholder { /* Firefox 18- */
+		/*background-color: #0c75a0;*/ 
+		text-align: center; 
+		}
+
+		#schoolName ::-moz-placeholder {  /* Firefox 19+ */
+		/*background-color: #0c75a0;*/
+		text-align: center;  
+		}
+
+		#schoolName :-ms-input-placeholder {  
+		/*background-color: #0c75a0;*/ 
+		text-align: center; 
+		}
+
+		#schoolName input:focus{
+		/*background-color: #0c75a0;*/
+		color: white;
+		}
+
+		#year{
+		color:#fff;
+		margin-top:5px;
+		}
+
+		#year ::-webkit-input-placeholder {
+		/*background-color: #0c75a0;*/
+		text-align: center;
+		}
+
+		#year :-moz-placeholder { /* Firefox 18- */
+		/*background-color: #0c75a0;*/ 
+		text-align: center; 
+		}
+
+		#year ::-moz-placeholder {  /* Firefox 19+ */
+		/*background-color: #0c75a0;*/
+		text-align: center;  
+		}
+
+		#year :-ms-input-placeholder {  
+		/*background-color: #0c75a0;*/ 
+		text-align: center; 
+		}
+
+		#year input:focus{
+		/*background-color: #0c75a0;*/
+		color: white;
+		}
+
 
 		@media screen and (min-width: 768px) {
 	
-			 .modal-dialog  {width:50%;}
+		.modal-dialog  {width:50%;}
 
 		}
 
@@ -185,14 +282,122 @@
 		.modal-header button{
 		color:#fff;
 		}
+		.namskeid{
+		background-color: #F5F3F3!important;
+		border:solid 1px #DED9D9 ;
+		margin-bottom: 5px;
+		}
 
+		.form-control{
+		display:inline!important;
+		width:85%!important;
+		margin-right: 2%;
+		}
 
-	
+		.update_namskeid_nafn{
+		margin-bottom: 5px;
+		}
+
+		.mmsView{
+		height :100px;
+		}
+
+		.mmsView h1{
+		float:left;
+		color:#fff;
+		}
+		.mmsView p{
+		float:left;
+		color:#fff;
+		}
+
+		.namskeid_nafn{
+		margin-top: 5px;
 		
+		}
+
+		.btn-primary{
+		background-color:#fff;
+		border-color:#fff; 
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color:#000;
+		}
+
+
+		ul{
+		margin-bottom: 30px;
+		}
+
+		#page{
+		border:solid 1px #DED9D9;
+		background-color: #F5F3F3!important;
+
+
+		}
+
+		.col-md-12{
+		padding-left: 0!important;
+		padding-right: 0!important;
+		}
+
+		.process_buttons{
+		margin-left: 50px;
+		}
+
+		.bottomLine{
+		background-color:#1ca0cb;
+		color:#fff;
+		margin-right: 0px;
+		margin-left: 0px;
+
+		}
+
+		.bottomLine p{
+		
+
+		}
+
+		.mmsFrontUl{
+		line-height: 250%;
+		
+
+		}
+
+
+
+
+
 	</style>
 </head>
 <body>
-	<header>
+	<header class = "mmsView">
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12 ">
+			<h1>Rafrænt vitnisburðarskírteini</h1>		
+    		</div>
+    	</div>
+
+    	  <div class="row">
+			<div class="col-md-12 ">
+			<p>Viðmót Menntamálastofnunar</p>
+			
+    		</div>
+			</div>
+    	</div> 
+  
+
+	</header>
+	
+
+	<header class = "schoolView">
+
+	<script type="text/javascript">
+	$('.schoolView').hide();
+	</script>
 
 	<div class="container">
 
@@ -208,19 +413,24 @@
     		</div>
 
 			<div class="col-md-6">
-				<div id="schoolName">
-
-					<h1>Sláðu inn nafn skóla</h1>
-					<a href="#">
-						<span class="glyphicon glyphicon-pencil"></span>
-					</a>
-				</div>
+				
     		</div>
 
     		<div class="col-md-4">
-				<div id="cardName">
 
-					<h3>Rafrænt vitnisburðarskírteini</h3>
+				<div id="schoolName">
+					<h1>Sláðu inn nafn skóla</h1>
+					<a href="#">
+					<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+
+				</div>
+
+				<div id="year">
+					<h3>Sláðu inn ártal</h3>
+					<a href="#">
+					<span class="glyphicon glyphicon-pencil"></span>
+					</a>
 					
 				</div>
     		</div>
@@ -228,17 +438,25 @@
    </div>
 
 	</header>
+
+
 	<div id="page" class="container">
+		<div class="container">
 		<div class="help">
 			<div id="school_gradecard_help">
-				<h3>Vitnisburðarskírteini skóla</h3>
+				<h3>Búa til vitnisburðarskírteini skóla</h3>
 				<p>
-					<ul>
-						<li>Búið til vitnisburðaskírteini skóla með því að slá inn þau námskeið sem skólar verða að fylla út í, smellið á takkann "Búa til skólaskírteini" og svo vista skjalið (file &gt; save, ctrl+s eða slaufa+s).</li>
-						<li>Sendið vitnisburðaskírteini skóla til allra skóla.</li>
+					<ul class = "mmsFrontUl">
+						<li>Búið til vitnisburðaskírteini skóla með því að slá inn þær námsgreinar sem skólar verða að fylla út í.</li>
+						<li>Veljið <button class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></button>  hnappinn og sláið inn nafn námsgreinar, veljið svo <button class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-ok"></span></button> eða <b>enter</b> á lyklaborði til að vista viðeigandi námsgrein.Notið 
+						<button class="btn btn-sm btn-danger remove_on_school" href=""><span class="glyphicon glyphicon-remove"></span></button> til að eyða námsgreinum.</li>
+						<li>Þegar allar námsgreinar eru komnar inn, smellið á takkann <b>"Búa til skólaskírteini"</b></li>
+						<!-- <li>Vistið skjalið með því að smella á hnappinn "vista skjal" eða (file &gt; save, ctrl+s á PC og slaufa+s mac).</li>
+						<li>Sendið vitnisburðaskírteini skóla til allra skóla.</li> -->
 					</ul>
 				</p>
 			</div>
+		</div>
 			<div id="student_gradecard_help">
 				<h3>Vitnisburðaskírteini nemanda er búið til með því að</h3>
 				<p>
@@ -251,10 +469,39 @@
 				</p>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-md-12">
 				<div id="table_matsvidmid">
-					<h3>Matsviðmið</h3>
+						<div class="row topLine">
+							<div class="container">
+								<div class="textCenter col-md-2"><p>Bæta við námsgrein</p></div>
+								<div class="textleft col-md-8"><p>Námsgreinar</p></div>
+								<div class="textCenter col-md-2"><p>Matsviðmið</p></div>
+							</div>
+						</div>
+
+						<div class="row topLine2">
+							<div class="container">
+								<div class="textCenter col-md-2"><p></p></div>
+								<div class="textleft col-md-8"><p>Fag</p></div>
+								<div class="textCenter col-md-2"><p>Matsviðmið</p></div>
+							</div>
+						</div>
+
+						<div class="row topLine3">
+							<div class="container">
+								<div class="textLeft col-md-4"><p>Fag</p></div>
+								<div class="textleft col-md-2"><p>Einkunn</p></div>
+								<div class="textCenter col-md-6"><p>Skýring</p></div>
+							</div>
+						</div>
+					<script type="text/javascript">
+						$('.topLine2').hide();
+						</script>
+					<script type="text/javascript">
+						$('.topLine3').hide();
+						</script>
 					<!-- <div class="row">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
 						<div class="matsvidmid_nafn col-md-8">Íslenska og íslenska sem annað tungumál</div>
@@ -262,82 +509,92 @@
 							<div class="matsvidmid_info" id="matsvidmid_Íslenska - Matsviðmið fyrir íslensku og íslensku sem annað tungumál"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div> -->
-					<div class="row">
+				<div class="container">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Íslenskt táknmál og íslenska</div>
+						<div class="matsvidmid_nafn col-md-8" id ="Íslenska"><p>Íslenska</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Íslenska - Matsviðmið fyrir íslenskt táknmál og íslensku"data-toggle="modal" data-target="#islenska"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Erlend tungumál</div>
+						<div class="matsvidmid_nafn col-md-8"><p>Erlend tungumál</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Erlend tungumál" data-toggle="modal" data-target="#erlent"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Listgreinar</div>
+						<div class="matsvidmid_nafn col-md-8"><p>Listgreinar</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir listgreinar" data-toggle="modal" data-target="#listgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Verkgreinar</div>
+						<div class="matsvidmid_nafn col-md-8"><p>Verkgreinar</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_List- og verkgreinar - Matsviðmið fyrir verkgreinar"  data-toggle="modal" data-target="#verkgreinar"><span class="glyphicon glyphicon-info-sign"></span></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Náttúrugreinar</div>
+						<div class="matsvidmid_nafn col-md-8"><p>Náttúrugreinar</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Náttúrugreinar" data-toggle="modal" data-target="#natturugreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Skólaíþróttir</div>
+						<div class="matsvidmid_nafn col-md-8"><p>Skólaíþróttir</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Skólaíþróttir" data-toggle="modal" data-target="#ithrottir"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Samfélagsgreinar</div>
+						<div class="matsvidmid_nafn col-md-8"><p>Samfélagsgreinar</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Samfélagsgreinar" data-toggle="modal" data-target="#samfelagsgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Stærðfræði</div>
+						<div class="matsvidmid_nafn col-md-8"><p><p>Stærðfræði</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Stærðfræði" data-toggle="modal" data-target="#staerdfraedi"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success remove_on_school" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Upplýsinga- og tæknimennt</div>
+						<div class="matsvidmid_nafn col-md-8"><p>Upplýsinga- og tæknimennt</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Upplýsinga- og tæknimennt" data-toggle="modal" data-target="#upplysingamennt"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mms val">
 						<div class="add_namskeid col-md-2"><a role="button" class="btn btn-sm btn-success" href=""><span class="glyphicon glyphicon-plus"></span></a></div>
-						<div class="matsvidmid_nafn col-md-8">Valgreinar</div>
+						<div class="matsvidmid_nafn  val col-md-8"><p>Valgreinar</p></div>
 						<div class="col-md-2">
 							<div class="matsvidmid_info" id="matsvidmid_Valgreinar" data-toggle="modal" data-target="#valgreinar"><span class="glyphicon glyphicon-info-sign"></span></div>
 						</div>
-					</div>			
-				</div>
-				<div class="process_buttons">
-					<button class="btn btn-sm btn-primary" id="create_school_gradecard">Búa til skólaskírteini</button>
-					<button class="btn btn-sm btn-primary" id="create_student_gradecard">Búa til vitnisburðaskírteini nemanda</button>
+					</div>
+
+						
+
 				</div>
 
+				<div class="row bottomLine">
+						<div class="process_buttons">
+							<button class="btn btn-sm btn-primary" id="create_school_gradecard">Búa til skólaskírteini</button>
+							<button class="btn btn-sm btn-primary" id="create_student_gradecard">Búa til vitnisburðaskírteini nemanda</button>
+						</div>			
+					</div>
+
+					<script type="text/javascript">
+						$('.val').hide();
+						</script>
 
 	
 	<!-- Modal of matsvidmid -->
@@ -564,12 +821,13 @@
 					  </div>
 
 
-
+				
 
 
 	<!-- Modal of matsvidmid -->
 
 
+			</div>
 			</div>
 		</div>
 	</div>
@@ -579,16 +837,16 @@
 	<!-- Templates -->
 	<script type="text/template" id="template_namskeid">
 		<div class="row namskeid" data-id="{0}">
-			<div class="remove_namskeid col-md-2"><a href="" role="button" class="btn btn-danger btn-sm remove_on_school" class="namskeid_control"><span class="glyphicon glyphicon-minus"></span></a></div>
-			<div class="namskeid_nafn col-md-6">
-				<input type="text" class="update_namskeid_nafn" placeholder="Nafn námskeiðs" />
+			<div class="remove_namskeid col-md-2"><a href="" role="button" class="btn btn-danger btn-sm remove_on_school" class="namskeid_control"><span class="glyphicon glyphicon-remove"></span></a></div>
+			<div class="namskeid_nafn col-md-4">
+				<input type="text" class="form-control update_namskeid_nafn" placeholder="Nafn námsgreinar" />
 				<button class="btn btn-sm btn-success update_namskeid_nafn"><span class="glyphicon glyphicon-ok"></span></button>
 			</div>
 		</div>
 	</script>
 	
 	<script type="text/template" id="template_grade_abcd">
-		<div class="col-md-2 grade_select">
+		<div class="col-md-1 grade_select">
 			<select class="grades">
 				<option id="grade_a" value="a"><span class="grade grade_a">A</span></option>
 				<option id="grade_b+" value="b+"><span class="grade grade_b+">B+</span></option>
@@ -602,13 +860,13 @@
 	</script>
 
 	<script type="text/template" id="template_grade_save_button">
-		<div class="col-md-2 grade_select_button">
+		<div class="col-md-1 grade_select_button">
 			<button class="update_grade btn btn-sm btn-success"><span class="glyphicon glyphicon-ok"></button>
 		</div>
 	</script>
 	
 	<script type="text/template" id="template_grade_star">
-		<div class="col-md-2 grade_select">
+		<div class="col-md-1 grade_select">
 			<select class="grades">
 				<option value="a*"><span class="grade grade_a*">A*</span></option>
 				<option value="b*"><span class="grade grade_b*">B*</span></option>
@@ -620,7 +878,7 @@
 	</script>
 
 	<script type="text/template" id="template_grade_pass_or_fail">
-		<div class="col-md-2 grade_select">
+		<div class="col-md-1 grade_select">
 			<select class="grades">
 				<option value="staðið">Staðið</option>
 				<option value="fallið">Fallið</option>
@@ -629,7 +887,7 @@
 	</script>	
 	
 	<script type="text/template" id="template_grade_number">
-		<div class="col-md-2 grade_select">
+		<div class="col-md-1 grade_select">
 			<select class="grades">
 				<option value="0">0</option>
 				<option value="1">1</option>
@@ -647,7 +905,7 @@
 	</script>		
 	
 	<script type="text/template" id="template_grade_number_half">
-		<div class="col-md-2 grade_select">
+		<div class="col-md-1 grade_select">
 			<select class="grades">
 				<option value="0">0</option>
 				<option value="0,5">0,5</option>
@@ -717,6 +975,7 @@
 
 	
 	<script id="main.js">
+
 
 //upload img
 	$("#upfile1").click(function () {
@@ -860,6 +1119,8 @@
 		var template_grade = $("#template_grade_"+$(namskeid).attr("grade-type")).html();
 		return template_grade;
 	}
+
+		
 	
 	$(function() {
 		/* Til þess að stilla matsviðmið
@@ -873,11 +1134,17 @@
 		//
 
 		$(document.body).on('click', '#create_school_gradecard' ,function(e){
+
+			//change background color once grades are in
 			
+
+
 			var namskeid_ids = $(".namskeid").map(function(i, obj){
-				return $(obj).attr("data-id");
+				return $(obj).attr("data-id");s
 			});
 			if($.unique(namskeid_ids).length >= einstok_matsvidmid){
+
+			$("#table_matsvidmid").css("background-color", "#fff");
 				;
 			}
 			else{
@@ -885,18 +1152,26 @@
 				return;
 			}
 			
-			 $('.remove_on_school').remove();
+			$('.remove_on_school').remove();
+			
 
 			$("#create_school_gradecard").hide();
 			$("#school_gradecard_help").hide();
 			
 			$("#create_student_gradecard").show();
 			$("#student_gradecard_help").show();
+			$(".mmsView").remove();
+			$(".schoolView").show();
+			$(".topLine").remove();
+			$(".topLine2").show();
+			$(".val").show();
+
+
+
 		});
 
-		//register event handlers
 
-		
+		//register event handlers
 
 		
 		$(document.body).on('click', '#schoolName a ' ,function(e){
@@ -905,25 +1180,55 @@
 
 			console.log("clicking header");
 
-			checkGlyphicion()
-
+			checkGlyphicion();
 			
 		});
 
 
 		function checkGlyphicion(){
 
-			if($('header a span').hasClass("glyphicon-ok")){
+			if($('#schoolName a span').hasClass("glyphicon-ok")){
 
-				$('header h1').html($('header h1 input').val());
-				$('header a').html($('<span class="glyphicon glyphicon-pencil"></span>'));
+				$('#schoolName h1').html($('#schoolName h1 input').val());
+				$('#schoolName a').html($('<span class="glyphicon glyphicon-pencil"></span>'));
 
 			}else {
 
-				$('header h1').html($('<input placeholder="Sláðu inn nafn skóla"/>'));
+				$('#schoolName h1').html($('<input placeholder="Sláðu inn nafn skóla"/>'));
 				//focus on placeholder if button preseed
 				$('#schoolName input').focus();
-				$('header a').html($('<span class="glyphicon glyphicon-ok"></span>'));
+				$('#schoolName a').html($('<span class="glyphicon glyphicon-ok"></span>'));
+ 
+				    
+				}
+
+
+			}
+
+		$(document.body).on('click', '#year a ' ,function(e){
+			e.preventDefault();
+
+
+			console.log("clicking header");
+
+			checkGlyphicion2();
+			
+		});
+
+
+		function checkGlyphicion2(){
+
+			if($('#year a span').hasClass("glyphicon-ok")){
+
+				$('#year h3').html($('#year h3 input').val());
+				$('#year a').html($('<span class="glyphicon glyphicon-pencil"></span>'));
+
+			}else {
+
+				$('#year h3').html($('<input placeholder="Sláðu inn ártal"/>'));
+				//focus on placeholder if button preseed
+				$('#year input').focus();
+				$('#year a').html($('<span class="glyphicon glyphicon-ok"></span>'));
  
 				    
 				}
@@ -932,22 +1237,6 @@
 			}
 
 
-		$(document.body).on('click keyup', '.update_namskeid_nafn' ,function(e){
-			name = $(this).prev().val();
-			if(e.type === "keyup" && e.which != 13) {
-				return ;
-			}
-			else if(e.type === "keyup") {
-				name = $(this).val();
-			}
-			if(e.type === "click" && $(this).is("input")) {
-				return ;
-			}
-			save_course_name($(this), name);
-		});
-
-
-		
 		$(document.body).on('change', 'select.grades' ,function(e){
 			var grade = $("option:selected", this).text();
 			var row = $(this).parent().parent();
@@ -1023,6 +1312,11 @@
 		//bæta við tómu námskeiði
 		$(document.body).on('click', '.add_namskeid' ,function(e){
 			e.preventDefault();
+
+
+
+			var temp = (($(this).parent().find(".matsvidmid_nafn").attr("id")))
+
 			var template_namskeid = $("#template_namskeid").html();
 			var matsvidmid_id = $(this).parent().find(".matsvidmid_info").attr("id");
 			var template = template_namskeid.format(matsvidmid_id);
@@ -1032,9 +1326,14 @@
 				var template_grade_type = $("#template_grade_type").html();
 				template = $(template);
 				template.find(".namskeid_nafn").append(template_grade_type);
+
 			}
 			$(this).parent().after(template);
+			//add focus
+			$('.namskeid_nafn input').focus();
+
 		});
+
 		
 		//fjarlægja námskeið
 		$(document.body).on('click', '.remove_namskeid' ,function(e){
@@ -1072,6 +1371,11 @@
 
 		//búa til vitnisburðarskírteini nemanda
 		$(document.body).on('click', '#create_student_gradecard' ,function(e){
+
+			//remove matsvidmid and column headline
+			//$('.matsvidmid_nafn').remove();
+			
+
 			//Athuga hvort búið er að búa til fög fyrir öll matsviðmið
 			var namskeid_ids = $(".namskeid").map(function(i, obj){
 				return $(obj).attr("data-id");
@@ -1096,8 +1400,18 @@
 				namskeid.after(template_grade);
 			});
 			$(this).hide();
-			$("#table_matsvidmid").after("<button class='btn btn-sm btn-primary' id='save_grades'>Vista vitnisburðarskírteini</button>")
+
+			$(".bottomLine").html("<button class='btn btn-sm btn-primary process_buttons ' id='save_grades'>Vista vitnisburðarskírteini</button>")
+
 			$(".add_namskeid").html("");
+
+			$(".add_namskeid").remove();
+			$(".remove_namskeid").remove();
+
+			$(".topLine2").remove();
+			$(".topLine3").show();
+
+
 		});
 		
 		//vista nemandaupplýsingar
@@ -1226,6 +1540,11 @@
 		
 		//Vista vitnisburð
 		$(document.body).on('click', '#save_grades' ,function(e){
+			
+			$(".mms").remove();
+			$("#student_gradecard_help").remove();
+			
+
 			//Það verður að vera búið að vista allar einkunnir
 			if($(".update_grade").length > 0)
 			{
