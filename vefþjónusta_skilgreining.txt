@@ -11,15 +11,15 @@
 		{
 			"fag": "Nafn fags", {1,100}
 			"vitnisburður": "[A,B+,B,C,C+,D,A*,B*,C*,D*,[0-10],Lokið,Ólokið,Undaþága]", {1}
-			"Skýring": "Texti skýringar", {0,100}
-			"Matsviðmið": "Tengill í útgáfu matsviðmiðs", {0,1} //Ef vitnisburður er A/B+/B/C/C+/D fyrir kjarnafag
-			"Matsviðmið*": {
+			"skýring": "Texti skýringar", {0,100}
+			"matsviðmið": "Tengill í útgáfu matsviðmiðs", {0,1} //Ef vitnisburður er A/B+/B/C/C+/D fyrir kjarnafag
+			"matsviðmið*": {
 				"A*": "Skilgreining viðmiðs",
 				"B*": "Skilgreining viðmiðs",
 				"C*": "Skilgreining viðmiðs",
 				"D*": "Skilgreining viðmiðs",
 			}, //Ef vitnisburður er stjörnumerktur {1}
-			"Matsviðmið-Val": {
+			"matsviðmið-val": {
 				"Tengill": "Tengill í skilgreiningu matsviðmiðs hjá skóla", {0,1}
 				"A": "Skilgreining viðmiðs",
 				"B": "Skilgreining viðmiðs",
@@ -28,4 +28,71 @@
 			}, {0,1}
 		},  {10,}
 	]
+}
+
+//Útskýring með skilgreiningu
+Nauðsynleg svæði eru:
+- nemandi.kennitala
+- skóli.kennitala
+- vitnisburður listi
+	//í lista
+	- fag (1 til 100 stafir)
+	- vitnisburður, listi af valmöguleikum þar sem einn verður að vera valinn
+	- skýring (svæði fylgir með, 0 til 100 stafir)
+	- matsviðmið (þegar útgáfustjórn fyrir matsviðmið kjarnafaga verður virkjað, þangað til ekki nauðsynlegt svæði)
+	- matsviðmið* (nauðsynlegt svæði ef valin er stjörnumerktur vitnisburður)
+	- matsviðmið-val (ekki nauðsynlegt svæði)
+
+Dæmi:
+{
+	"nemandi": {
+		"kennitala": "1234567890"
+	},
+	"skóli": {
+		"kennitala": "1234567890"
+	},
+	"vitnisburður": [
+		{
+			"fag": "Stærðfræði",
+			"vitnisburður": "B+",
+			"skýring": "",
+			"matsviðmið": "",
+		},
+		{
+			"fag": "Íslenska",
+			"vitnisburður": "A*",
+			"skýring": "Lorem ipsum",
+			"matsviðmið*": {
+				"A*": "Matsviðmið fyrir A*",
+				"B*": "Matsviðmið fyrir B*",
+				"C*": "Matsviðmið fyrir C*",
+				"D*": "Matsviðmið fyrir D*",
+			},
+		},
+		{
+			"fag": "Vefforritun",
+			"vitnisburður": "A",
+			"skýring": "",
+			"matsviðmið-val": {
+				"A": "Matsviðmið fyrir A",
+				"B": "Matsviðmið fyrir B",
+				"C": "Matsviðmið fyrir C",
+				"D": "Matsviðmið fyrir D",
+			},
+		},		
+		{
+			"fag": "Hraðlestur",
+			"vitnisburður": "9",
+			"skýring": "",
+			"matsviðmið-val": {
+				"Tengill": "http://lestu.rett.is"
+			},
+		},		
+		{
+			"fag": "Jóga",
+			"vitnisburður": "Lokið",
+			"skýring": "",
+			"matsviðmið-val": {},
+		},		
+	]	
 }
