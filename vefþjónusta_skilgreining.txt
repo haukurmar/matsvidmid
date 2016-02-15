@@ -14,11 +14,18 @@
 			"Skýring": "Texti skýringar", {0,100}
 			"Matsviðmið": "Tengill í útgáfu matsviðmiðs", {0,1} //Ef vitnisburður er A/B+/B/C/C+/D fyrir kjarnafag
 			"Matsviðmið*": {
-				"[A,A*]": "Skilgreining viðmiðs",
-				"[B,B*]": "Skilgreining viðmiðs",
-				"[C,C*]": "Skilgreining viðmiðs",
-				"[D,D*]": "Skilgreining viðmiðs",
-			}, {0,1} //Ef vitnisburður er stjörnumerktur eða fyrir valfag
+				"A*": "Skilgreining viðmiðs",
+				"B*": "Skilgreining viðmiðs",
+				"C*": "Skilgreining viðmiðs",
+				"D*": "Skilgreining viðmiðs",
+			}, //Ef vitnisburður er stjörnumerktur {1}
+			"Matsviðmið-Val": {
+				"Tengill": "Tengill í skilgreiningu matsviðmiðs hjá skóla", {0,1}
+				"A": "Skilgreining viðmiðs",
+				"B": "Skilgreining viðmiðs",
+				"C": "Skilgreining viðmiðs",
+				"D": "Skilgreining viðmiðs", {0,1} //Ef ekki tengill í skilgreiningu
+			}, {0,1}
 		},  {10,}
 	]
 }
