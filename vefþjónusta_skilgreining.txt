@@ -1,15 +1,26 @@
 {
 	"nemandi": {
-		"kennitala": "1234567890",
+		"kennitala": "1234567890", {1}
+		//önnur svæði ekki nauðsynleg
 	},
 	"skóli": {
-		"kennitala": "1234567890",
+		"kennitala": "1234567890", {1}
+		//önnur svæði ekki nauðsynleg
 	},
 	"vitnisburður": [
 		{
 			"fag": "Nafn fags", {1,100}
-			"vitnisburður": "[A,B+,B,C,C+,D,A*,B+*,B*,C*,C+*,D*,[0-10],Lokið,Ólokið,Undaþága]",  {1}
+			"vitnisburður": "[A,B+,B,C,C+,D,A*,B+*,B*,C*,C+*,D*,[0-10],Lokið,Ólokið,Undaþága]", {1}
 			"Skýring": "Texti skýringar", {0,100}
+			"Matsviðmið": "Tengill í útgáfu matsviðmiðs", {0,1}
+			"Matsviðmið*": {
+				"A*": "Skilgreining viðmiðs",
+				"B+*": "Skilgreining viðmiðs",
+				"B*": "Skilgreining viðmiðs",
+				"C*": "Skilgreining viðmiðs",
+				"C+*": "Skilgreining viðmiðs",
+				"D*": "Skilgreining viðmiðs",
+			}, {0,1} //Ef vitnisburður er stjörnumerktur
 		},  {10,}
 	]
 }
