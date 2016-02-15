@@ -10,17 +10,15 @@
 	"vitnisburður": [
 		{
 			"fag": "Nafn fags", {1,100}
-			"vitnisburður": "[A,B+,B,C,C+,D,A*,B+*,B*,C*,C+*,D*,[0-10],Lokið,Ólokið,Undaþága]", {1}
+			"vitnisburður": "[A,B+,B,C,C+,D,A*,B*,C*,D*,[0-10],Lokið,Ólokið,Undaþága]", {1}
 			"Skýring": "Texti skýringar", {0,100}
-			"Matsviðmið": "Tengill í útgáfu matsviðmiðs", {0,1} //Ef vitnisburður er A/B+/B/C/C+/D
+			"Matsviðmið": "Tengill í útgáfu matsviðmiðs", {0,1} //Ef vitnisburður er A/B+/B/C/C+/D fyrir kjarnafag
 			"Matsviðmið*": {
-				"A*": "Skilgreining viðmiðs",
-				"B+*": "Skilgreining viðmiðs",
-				"B*": "Skilgreining viðmiðs",
-				"C*": "Skilgreining viðmiðs",
-				"C+*": "Skilgreining viðmiðs",
-				"D*": "Skilgreining viðmiðs",
-			}, {0,1} //Ef vitnisburður er stjörnumerktur
+				"[A,A*]": "Skilgreining viðmiðs",
+				"[B,B*]": "Skilgreining viðmiðs",
+				"[C,C*]": "Skilgreining viðmiðs",
+				"[D,D*]": "Skilgreining viðmiðs",
+			}, {0,1} //Ef vitnisburður er stjörnumerktur eða fyrir valfag
 		},  {10,}
 	]
 }
