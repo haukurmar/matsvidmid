@@ -1,0 +1,15 @@
+{
+	"nemandi": {
+		"kennitala": "1234567890",
+	},
+	"skóli": {
+		"kennitala": "1234567890",
+	},
+	"vitnisburður": [
+		{
+			"fag": "Nafn fags", {1,100}
+			"vitnisburður": "[A,B+,B,C,C+,D,A*,B+*,B*,C*,C+*,D*,[0-10],Lokið,Ólokið,Undaþága]",  {1}
+			"Skýring": "Texti skýringar", {0,100}
+		},  {10,}
+	]
+}
