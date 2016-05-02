@@ -1,98 +1,78 @@
 {
-	"nemandi": {
+	"student": {
 		"kennitala": "1234567890", {1}
 		//önnur svæði ekki nauðsynleg
 	},
-	"skóli": {
+	"school": {
 		"kennitala": "1234567890", {1}
 		//önnur svæði ekki nauðsynleg
 	},
-	"vitnisburður": [
+	"testimonies": [
 		{
-			"fag": "Nafn fags", {1,100}
-			"vitnisburður": "[A,B+,B,C,C+,D,A*,B*,C*,D*,[0-10],Lokið,Ólokið,Undaþága]", {1}
-			"skýring": "Texti skýringar", {0,100}
-			"matsviðmið": "Tengill í útgáfu matsviðmiðs", {0,1} //Ef vitnisburður er A/B+/B/C/C+/D fyrir kjarnafag
-			"matsviðmið*": {
-				"A*": "Skilgreining viðmiðs",
-				"B*": "Skilgreining viðmiðs",
-				"C*": "Skilgreining viðmiðs",
-				"D*": "Skilgreining viðmiðs",
-			}, //Ef vitnisburður er stjörnumerktur {1}
-			"matsviðmið-val": {
-				"Tengill": "Tengill í skilgreiningu matsviðmiðs hjá skóla", {0,1}
-				"A": "Skilgreining viðmiðs",
-				"B": "Skilgreining viðmiðs",
-				"C": "Skilgreining viðmiðs",
-				"D": "Skilgreining viðmiðs", {0,1} //Ef ekki tengill í skilgreiningu
-			}, {0,1}
+			"course": "Nafn fags", {1,100}
+			"testimony": "[A,B+,B,C,C+,D,A*,B*,C*,D*,[0-10],Lokið,Ólokið,Undaþága]", {1}
+			"description": "Texti skýringar", {0,100}
+			"evaluationCriteria": "Skýring vitnisburðar", //Ef vitnisburður er D fyrir kjarnafag
+			"evaluationCriteriaUri": "Tengill í útgáfu matsviðmiðs", {0,1}
+			"evaluationCriteriaStar": "Skilgreining viðmiðs", // Ef vitnisburður er stjörnumerktur {1}
+			"evaluationCriteriaOptionalCourse": "Skilgreining viðmiðs", // {0,1},
 		},  {10,}
 	]
 }
 
 //Útskýring með skilgreiningu
 Nauðsynleg svæði eru:
-- nemandi.kennitala
-- skóli.kennitala
-- vitnisburður listi
+- student.kennitala
+- school.kennitala
+- testimonies listi
 	//í lista
 	- fag (1 til 100 stafir)
-	- vitnisburður, listi af valmöguleikum þar sem einn verður að vera valinn
-	- skýring (svæði fylgir með, 0 til 100 stafir)
-	- matsviðmið (þegar útgáfustjórn fyrir matsviðmið kjarnafaga verður virkjað, þangað til ekki nauðsynlegt svæði)
-	- matsviðmið* (nauðsynlegt svæði ef valin er stjörnumerktur vitnisburður)
-	- matsviðmið-val (ekki nauðsynlegt svæði)
+	- testimony, listi af valmöguleikum þar sem einn verður að vera valinn
+	- description (svæði fylgir með, 0 til 100 stafir)
+	- evaluationCriteria Skýring vitnisburðar
+	- evaluationCriteriaUri (þegar útgáfustjórn fyrir matsviðmið kjarnafaga verður virkjað, þangað til ekki nauðsynlegt svæði)
+	- evaluationCriteriaStar (nauðsynlegt svæði ef valin er stjörnumerktur vitnisburður)
+	- evaluationCriteriaOptionalCourse (ekki nauðsynlegt svæði)
 
 Dæmi:
 {
-	"nemandi": {
+	"student": {
 		"kennitala": "1234567890"
 	},
-	"skóli": {
+	"school": {
 		"kennitala": "1234567890"
 	},
-	"vitnisburður": [
+	"testimonies": [
 		{
-			"fag": "Stærðfræði",
-			"vitnisburður": "B+",
-			"skýring": "",
-			"matsviðmið": "",
+			"course": "Stærðfræði",
+			"testimony": "B+",
+			"description": "",
+			"evaluationCriteria": ""
 		},
 		{
-			"fag": "Íslenska",
-			"vitnisburður": "A*",
-			"skýring": "Lorem ipsum",
-			"matsviðmið*": {
-				"A*": "Matsviðmið fyrir A*",
-				"B*": "Matsviðmið fyrir B*",
-				"C*": "Matsviðmið fyrir C*",
-				"D*": "Matsviðmið fyrir D*",
-			},
+			"course": "Íslenska",
+			"testimony": "A*",
+			"description": "Lorem ipsum",
+			"evaluationCriteriaStar": "",
 		},
 		{
-			"fag": "Vefforritun",
-			"vitnisburður": "A",
-			"skýring": "",
-			"matsviðmið-val": {
-				"A": "Matsviðmið fyrir A",
-				"B": "Matsviðmið fyrir B",
-				"C": "Matsviðmið fyrir C",
-				"D": "Matsviðmið fyrir D",
-			},
-		},		
+			"course": "Vefforritun",
+			"testimony": "A",
+			"description": "",
+			"evaluationCriteriaOptionalCourse": ""
+		},
 		{
-			"fag": "Hraðlestur",
-			"vitnisburður": "9",
-			"skýring": "",
-			"matsviðmið-val": {
-				"Tengill": "http://lestu.rett.is"
-			},
-		},		
+			"course": "Hraðlestur",
+			"testimony": "9",
+			"description": "",
+			"evaluationCriteriaUri": "http://lestu.rett.is"
+			"evaluationCriteriaOptionalCourse": ""
+		},
 		{
-			"fag": "Jóga",
-			"vitnisburður": "Lokið",
-			"skýring": "",
-			"matsviðmið-val": {},
+			"course": "Jóga",
+			"testimony": "Lokið",
+			"description": "",
+			"evaluationCriteriaOptionalCourse": {}
 		},		
 	]	
 }
